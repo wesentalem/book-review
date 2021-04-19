@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{{book.bookTitle}}
+
+{% endblock %}
+
+
+{% block styles %}
+<style>
+    .content {
+        margin-top: 0;
+        height: 100%;
+    }
+
+    .container-lg {
+
+        background-color: white;
+        margin: 0px 20px;
+        height: 100%;
+
+    }
+
+    .topbar {
+        margin-top: 0;
+        padding: 10px 0;
+        background-color: black;
+
+    }
+
+    .topRow {
+        display: inline-flex;
+        text-align: center;
+        width: 100%;
+    }
+
+    .search {
+        width: 90vh;
+        margin-left: auto;
+    }
+
+    .corner-right {
+
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+    .main {
+
+        height: auto;
+        padding: 25px;
+        
+    }
+
+    .main-top {
+        display: inline-flex;
+    }
+
+    .main-top div{
+        width: 90vh;
+        min-height: 50vh;
+    }
+
+    
+
+    .comment{
+        width: 150vh;
+        margin: 0 auto;
+    }
+
+    .comment-form{
+        padding: 4vh;
+    }
+
+    .comment-form input{
+        display: block;
+    }
+
+    .comment-bar {
+        width: 70%;
+        height: 20vh;
+        resize: none;
+    }
+
+
+
+    h2 {
+        font-size: 30px;
+    }
+
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg fill">
+    <div class="topbar">
+        <div class="topRow">
+            <div class="search">
+                <form action="../search" class="input-group" method="post">
+                    <input type="search" name="search" class="form-control" placeholder="search">
+                    <input type="submit" class="btn btn-secondary">
+                </form>
+
+            </div>
+            <div class="corner-right">
+                <a href="../logout">
+                <button class="btn btn-secondary">Logout</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="main-top">
+        <div class="BookCover">
+            
+            <!-- <img src="/static/images/nocover.jpg" alt="cover" width="300 vh" style="margin-left: 20vh; box-shadow: 5px 5px 8px 5px rgba(180, 180, 180);"> -->
+            <img src="http://covers.openlibrary.org/b/isbn/{{ book.ISBN }}-L.jpg" alt="cover"
+                style="margin-left: 20vh; box-shadow: 5px 5px 8px 5px rgba(180, 180, 180);" id="cover-img" onload="checkSize()">
+
+            <script>
+                function checkSize() {
+                    var bookCover = document.getElementById('cover-img')
+                    var height = bookCover.height;
+                    var width = bookCover.width;
+
+                    if(width == '1') {
+                        bookCover.src = '/static/images/nocover.jpg';
+                    }
+                    bookCover.style = 'margin-left: 20vh; box-shadow: 5px 5px 8px 5px rgba(180, 180, 180); width: 45vh';
+                    console.log(width + " " + height);
+                }
+                
+            </script>
+        </div>
+        <div class="BookInfo">
+        
+            <h2 class="bookTitle">{{ book.bookTitle }}</h2>
+            
+            <p class="bookAuthor">by {{ book.bookAuthor }}</p>
+            
+            <p>published {{book.publicationDate }}</p>
+            <p>Average Rating:
+                {% for star in range(book.rating) %}
+                <img src="/static/images/star.svg" alt=""
+                    style="filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(2deg) brightness(104%) contrast(97%);"
+                    width="15vh">
+                {% endfor %}
+            </p>
+
+            {% if description %}
+            <p>
+                {{ description }}
+            </p>
+            {% endif %}
+
+            {% if subjects %}
+            <p>Subjects:</p>
+            <ul>
+                {% for subject in subjects %}
+                <li>{{ subject }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            
+        </div>
+        </div>
+        <hr>
+        <div class="comment">
+            <div class="giveComment">
+                
+                <form action="/book/{{ book.ISBN }}" class="comment-form" method="post">
+                    <h3>Give a Review</h3>
+                    <br>
+
+                    <div class="rating-system" style="display: flex;">
+                    <!-- Rating -->
+                    <div class="margin: 1vh;"> 
+                        {% for star in range(5) %}
+                        <img src="/static/images/star.svg" alt="" width="15vh" id="star-{{star}}" class="input-stars"
+                            onclick="setStar({{star}});" style="cursor: pointer;">
+                        {% endfor %}
+                    </div>
+                    <script>
+                        function setStar(starNumber) {
+                            var ratingText = ['it was god awful', 'i dislike it', 'it was ok/mediocre', 'it was good', 'i love this'];                            
+                            document.getElementById('rating-option').value = starNumber + 1;
+                            document.getElementById('rating-text').innerHTML = ratingText[starNumber]
+                            var stars = document.getElementsByClassName('input-stars');
+                            for (i = 0; i < stars.length; i++) {
+                                if(i <= starNumber) {
+                                    stars[i].style = 'filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(2deg) brightness(104%) contrast(97%); cursor: pointer;';
+                                } else {
+                                    stars[i].style = 'filter: ;';
+                                }
+                                
+                            }
+                            console.log(starNumber);
+                        }
+                    </script>
+                    <select name="rating" id="rating-option" style="display: none;" name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <p style="margin-left: 3vh;" id="rating-text">
+                        It was god awful
+                    </p>
+                    </div>
+                    <br>
+                    <textarea type="text" class="comment-bar" name="comment"></textarea>
+                    
+                    <input type="submit" class="btn btn-warning" value="Post">
+                </form>
+            </div>
+            <hr>
+            <div class="otherComments">
+                {% for review in reviews %}
+                    <div>
+                    <div style="display:inline-flex; width: auto;">
+                    <div style="margin: 0 2vh;">
+                        <img src="/static/images/user.svg" alt="user" width="50vh" style="margin-top: 1vh">
+                    </div>
+                    <div class="review">
+                        <p class="review-username" style="color:maroon; font-weight:bold; margin-bottom:0;">{{ review.username }}</p>
+                        <span class="review-rating" style="margin:0">
+                        {% for star in range(review.rating) %}
+                        
+                        <img src="/static/images/star.svg" alt=""
+                            style="filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(2deg) brightness(104%) contrast(97%);"
+                            width="15vh">
+                        
+                        {% endfor %}
+                        </span>
+                        <p class="review-comment">{{ review.review }}</p>
+                    </div>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+
+
+
+</div>
+{% endblock content %}

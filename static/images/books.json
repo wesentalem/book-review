@@ -1,0 +1,64 @@
+{
+  "ISBN:1416949658": {
+    "bib_key": "ISBN:1416949658",
+    "info_url": "https://openlibrary.org/books/OL8458980M/The_Dark_Is_Rising_(The_Dark_Is_Rising_Sequence)",
+    "preview": "restricted",
+    "preview_url": "https://archive.org/details/darkisrising00coop_0",
+    "thumbnail_url": "https://covers.openlibrary.org/b/id/761940-S.jpg",
+    "details": {
+      "publishers": ["Simon Pulse"],
+      "identifiers": { "librarything": ["4290062"], "goodreads": ["210329"] },
+      "weight": "4.8 ounces",
+      "first_sentence": {
+        "type": "/type/text",
+        "value": "\"Too many!\" James shouted, and slammed the door behind him."
+      },
+      "covers": [761940],
+      "physical_format": "Paperback",
+      "key": "/books/OL8458980M",
+      "authors": [{ "key": "/authors/OL397243A", "name": "Susan Mary Cooper" }],
+      "ocaid": "darkisrising00coop_0",
+      "subjects": [
+        "Action & Adventure - General",
+        "Classics",
+        "Science Fiction, Fantasy, & Magic",
+        "Juvenile Fiction / Science Fiction, Fantasy, Magic",
+        "Legends, Myths, & Fables - Arthurian",
+        "Juvenile Fiction",
+        "Children's Books/Ages 9-12 Fiction",
+        "England",
+        "Fantasy",
+        "Fiction",
+        "Children: Young Adult (Gr. 7-9)"
+      ],
+      "isbn_13": ["9781416949657"],
+      "classifications": {},
+      "source_records": [
+        "amazon:1416949658:ff:1636272653:289176",
+        "marc:marc_loc_updates/v38.i36.records.utf8:5389448:1107",
+        "ia:darkisrising00coop_0",
+        "marc:marc_loc_2016/BooksAll.2016.part34.utf8:179489347:1107"
+      ],
+      "title": "The Dark Is Rising (The Dark Is Rising Sequence)",
+      "number_of_pages": 272,
+      "languages": [{ "key": "/languages/eng" }],
+      "isbn_10": ["1416949658"],
+      "publish_date": "May 8, 2007",
+      "works": [{ "key": "/works/OL2715164W" }],
+      "type": { "key": "/type/edition" },
+      "physical_dimensions": "8 x 5.5 x 0.9 inches",
+      "lccn": ["2007281068"],
+      "lc_classifications": ["PZ7.C7878 Dar 2007"],
+      "latest_revision": 12,
+      "revision": 12,
+      "created": {
+        "type": "/type/datetime",
+        "value": "2008-04-29T15:03:11.581851"
+      },
+      "last_modified": {
+        "type": "/type/datetime",
+        "value": "2020-12-17T13:17:56.192632"
+      }
+    }
+  }
+}

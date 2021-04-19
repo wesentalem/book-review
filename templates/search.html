@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+
+{% block styles %}
+    <style>
+
+        .content {
+            margin-top: 0;
+            height: 100%;
+        }
+        
+        .container-lg {
+            
+            background-color: white;
+            margin: 0px 20px;
+            height: 100%;
+
+        }
+        .topbar {
+            margin-top: 0;
+            padding: 10px 0;
+            background-color: black;
+            
+        }
+        .topRow {
+            display: inline-flex;
+            text-align: center;
+            width: 100%;
+        }
+        .search {
+            width: 90vh;
+            margin-left: auto;
+        }
+
+        .corner-right {
+
+            margin-left: auto;
+            margin-right: 10px;
+        }
+        
+        .results {
+        
+            height: 95vh;
+            padding: 25px;
+        }
+        
+        .book-row:hover {
+            background-color: rgb(238, 237, 237);
+            cursor: pointer;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg fill">
+    <div class="topbar">
+        <div class="topRow">
+        <div class="search">
+            <form action="/search" class="input-group" method="post">
+                <input type="search" name="search" class="form-control" placeholder="search">
+                <input type="submit" class="btn btn-secondary">
+            </form>
+    
+        </div>
+        <div class="corner-right">
+            <a href="../logout">
+                <button class="btn btn-secondary">Logout</button>
+            </a>
+        </div>
+        </div>
+    </div>
+    
+    <div class="results">
+        <br>
+        <h3>Results:</h3>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Book Title</th>
+                    <th>Book Author</th>
+                    <th>Publication Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+
+                {% for book in result %}
+                
+                
+                <tr onclick="window.location='book/{{ book.ISBN }}'" class="book-row">
+                    <td>{{ book.ISBN }}</td>
+                    <td>{{ book.bookTitle }}</td>
+                    <td>{{ book.bookAuthor }}</td>
+                    <td>{{ book.publicationDate }}</td>
+                    
+                </tr>
+                
+                {% endfor %}
+            
+            </tbody>
+        </table>
+        {% if error %}
+        <h4 class="error" style="text-align: center; color:red; ">{{ error }}</h4>
+        {% endif %}
+        
+    </div>
+    
+</div>
+{% endblock content %}

@@ -1,0 +1,2 @@
+postgres://zcmjzgiddifxdf:5c2d1abdcb117401baf1d3d22e741e526a5d4bc8c818fe8a812f4fa92730088b@ec2-3-211-37-117.compute-1.amazonaws.com:5432/dblnhahsvb8jf0
+postgresql://zcmjzgiddifxdf:5c2d1abdcb117401baf1d3d22e741e526a5d4bc8c818fe8a812f4fa92730088b@ec2-3-211-37-117.compute-1.amazonaws.com:5432/dblnhahsvb8jf0

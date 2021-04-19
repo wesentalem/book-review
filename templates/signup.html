@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style>
+
+
+    .signup-form {
+        width: 340px;
+        margin: 10% auto;
+        margin-bottom: 0;
+        font-size: 15px;
+        background:rgba(0, 0, 0, 0.6);
+        padding-bottom: 5px;
+        border-radius: 5%; 
+        
+    }
+
+    .signup-form form {
+        margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+        border-radius: 5%;
+
+    }
+
+    .signup-form h2 {
+        margin-bottom: 20px;
+    }
+
+    .signup-form input {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 25px;
+
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="signup-form">
+
+    <form class="form-signin" method="POST" action="/signup">
+        <h2 class="form-signin-heading text-center">Sign Up</h2>
+        {% if error %}
+        <p class="error" style="text-align: center; color:red; ">{{ error }}</p>
+        {% endif %}
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id='inputUsername' name="username" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-danger btn-block" type="submit">Sign Up</button>
+
+    </form>
+    <p class="text-center"><a class="text-light font-weight-bold" href="/login">Sign in</a></p>
+</div> <!-- /container -->
+{% endblock %}
