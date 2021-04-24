@@ -43,6 +43,5 @@ will result in duplicate error.
 
 Alternatively, if you don't wish to replace books.csv, you can run 
 the delete.py which will empty the books database
-
-<img href="https://github.com/wesentalem/book-review/blob/master/screenshot.PNG?raw=true" alt="screenshot1">
-<img href="https://raw.githubusercontent.com/wesentalem/book-review/master/screenshot2.PNG" alt="screenshot2">
+![alt text](https://github.com/wesentalem/book-review/blob/master/screenshot.PNG?raw=true)
+![alt text](https://github.com/wesentalem/book-review/blob/master/screenshot2.PNG?raw=true)
